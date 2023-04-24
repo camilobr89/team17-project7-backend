@@ -5,7 +5,7 @@ module.exports = (sequelize) => {
   sequelize.define('genres', {
     id: {
       type: DataTypes.UUID,
-      defaultValue: DataTypes.UUIDV4,
+      defaultValue: DataTypes.UUIDV1,
       primaryKey: true,
     },
     name: {
