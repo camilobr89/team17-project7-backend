@@ -1,5 +1,13 @@
 import { Sequelize } from 'sequelize'
 
+const Op = Sequelize.Op
+
+const operatorsAliases = {
+  $like: Op.like,
+  $not: Op.not,
+  $in: Op.in
+}
+
 const sequelize = new Sequelize(process.env.DB_URL, {
   define: {
     timestamps: true,
@@ -8,7 +16,8 @@ const sequelize = new Sequelize(process.env.DB_URL, {
     createdAt: 'createdAt',
     updatedAt: 'updatedAt',
     deletedAt: 'deletedAt',
-    freezeTableName: true
+    freezeTableName: true,
+    operatorsAliases
   }
 })
 
