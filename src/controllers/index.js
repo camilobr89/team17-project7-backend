@@ -1,4 +1,3 @@
-const axios = require('axios');
 const { Genres } = require('../db.js');
 
 // obtenemos todos los generos de la base de datos
