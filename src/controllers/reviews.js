@@ -1,4 +1,3 @@
-import sequelize from '../config/sequelize.js'
 import { Review } from '../models/index.js'
 
 export const getAllByMovie = async (req, res, next) => {
@@ -26,7 +25,9 @@ export const getAllByMovie = async (req, res, next) => {
     res.json({
       count: reviews.length,
       reviews,
-      rating: reviews.reduce((acc, review) => acc + parseInt(review.rating), 0) / reviews.length
+      rating:
+        reviews.reduce((acc, review) => acc + parseInt(review.rating), 0) /
+        reviews.length
     })
   } catch (error) {
     throw new Error(error)
@@ -34,7 +35,7 @@ export const getAllByMovie = async (req, res, next) => {
 }
 
 export const getById = async (req, res, next) => {
-  try{
+  try {
     const { id } = req.params
 
     if (!id) {
@@ -43,7 +44,7 @@ export const getById = async (req, res, next) => {
       })
     }
 
-    if(id && isNaN(id)){
+    if (id && isNaN(id)) {
       return res.status(400).send({
         message: 'The id must be a number'
       })
@@ -58,19 +59,19 @@ export const getById = async (req, res, next) => {
     }
 
     res.json(review)
-  }catch(error){
+  } catch (error) {
     throw new Error(error)
   }
 }
 
 export const create = async (req, res, next) => {
-  try{
+  try {
     if (!req.body) {
       return res.status(400).send({
         message: 'The request body is empty'
       })
     }
-    
+
     const { movieId, userId, description, rating } = req.body
 
     if (!movieId || !userId || !rating) {
@@ -111,13 +112,13 @@ export const create = async (req, res, next) => {
     })
 
     res.json(review)
-  }catch(error){
+  } catch (error) {
     throw new Error(error)
   }
 }
 
 export const update = async (req, res, next) => {
-  try{
+  try {
     const { id } = req.params
 
     if (!id) {
@@ -126,7 +127,7 @@ export const update = async (req, res, next) => {
       })
     }
 
-    if (id && isNaN(id)){
+    if (id && isNaN(id)) {
       return res.status(400).send({
         message: 'The id must be a number'
       })
@@ -178,27 +179,30 @@ export const update = async (req, res, next) => {
       })
     }
 
-    await Review.update({
-      movieId,
-      userId,
-      description: description || null,
-      rating: rating.toString()
-    }, {
-      where: {
-        id
+    await Review.update(
+      {
+        movieId,
+        userId,
+        description: description || null,
+        rating: rating.toString()
+      },
+      {
+        where: {
+          id
+        }
       }
-    })
+    )
 
     const reviewUpdated = await Review.findByPk(id)
-    
+
     res.send(reviewUpdated)
-  }catch(error){
+  } catch (error) {
     throw new Error(error)
   }
 }
 
 export const remove = async (req, res, next) => {
-  try{
+  try {
     const { id } = req.params
 
     if (!id) {
@@ -207,7 +211,7 @@ export const remove = async (req, res, next) => {
       })
     }
 
-    if (id && isNaN(id)){
+    if (id && isNaN(id)) {
       return res.status(400).send({
         message: 'The id must be a number'
       })
@@ -230,7 +234,7 @@ export const remove = async (req, res, next) => {
     res.status(204).send({
       message: 'Review deleted'
     })
-  }catch(error){
+  } catch (error) {
     throw new Error(error)
   }
 }
