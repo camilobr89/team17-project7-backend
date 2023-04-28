@@ -52,6 +52,31 @@ Para ejecutar el proyecto, ejecuta el siguiente comando:
 npm start
 ```
 
+## Uso de la API
+
+### GET /movies:
+
+Para crear una nueva película, puedes hacer una solicitud POST al siguiente endpoint:
+
+
+```env
+POST http://localhost:3001/movies/create
+
+```
+
+El cuerpo de la solicitud debe contener los detalles de la película en formato JSON. Aquí tienes un ejemplo del formato que debe tener la información:
+
+```json
+{
+  "title": "Armageddon",
+  "year": 1998,
+  "director": "Michael Bay",
+  "synopsis": "Un grupo de perforadores de petróleo es enviado al espacio por la NASA para desviar un asteroide masivo en curso de colisión con la Tierra.",
+  "genres": ["Acción", "Ciencia ficción", "Aventura", "Thriller"],
+  "categories": ["estudio", "color", "blockbuster"]
+}
+
+```
 
 
 ## Licencia 
