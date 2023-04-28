@@ -26,18 +26,19 @@ const getGenresById = async (req, res) => {
 };
 
 
-// post en la base de datos
+// post en la base de datos 
 
 const postGenres = async (req, res) => {
     try {
-        const { name, descripcion } = req.body;
+        const { genre_name } = req.body;
         const newGenre = await Genres.create({
-            name,
-            descripcion
+            genre_name
         });
         res.status(201).json(newGenre);
+        
     } catch (error) {
         res.status(500).json({ error: error.message });
+       
     }
 };
 
@@ -46,14 +47,13 @@ const postGenres = async (req, res) => {
 const putGenres = async (req, res) => {
     try {
         const { id } = req.params;
-        const { name, descripcion } = req.body;
+        const { genre_name} = req.body;
         const genre = await Genres.findByPk(id);
         if (!genre) {
             return res.status(404).json({ error: 'Genre not found' });
         }
         const updatedGenre = await genre.update({
-            name,
-            descripcion
+            genre_name
         });
         res.status(200).json(updatedGenre);
     } catch (error) {
