@@ -1,1 +1,0 @@
-CREATE DATABASE catalogo_peliculas;
