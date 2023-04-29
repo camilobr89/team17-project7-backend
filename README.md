@@ -37,11 +37,14 @@ En la raiz del proyecto debe crear un archivo llamado: `.env` que tenga la sigui
 DB_USER=usuariodepostgres
 DB_PASSWORD=passwordDePostgres
 DB_HOST=localhost
+DB_NAME=nombreDeLaBaseDeDatos
 ```
 
 Reemplazar `usuariodepostgres` y `passwordDePostgres` con tus propias credenciales para conectarte a postgres. Este archivo va ser ignorado en la subida a github, ya que contiene información sensible (las credenciales).
 
-Adicionalmente será necesario que creen desde psql una base de datos llamada `movies`
+Remplazar `nombreDeLaBaseDeDatos` por el nombre que le quieran dar a la base de datos.
+
+Adicionalmente será necesario que creen desde postgres una base de datos con el nombre que le hayan dado en el archivo `.env`.
 
 
 ## Ejecutar el proyecto
